@@ -30,6 +30,7 @@ def main():
     client = MonitorManagementClient(
         credential=DefaultAzureCredential(),
         subscription_id="dd4bfc94-a096-412b-9c43-4bd13e35afbc",
+        api_version="2022-08-01-preview",
     )
 
     response = client.scheduled_query_rules.create_or_update(
