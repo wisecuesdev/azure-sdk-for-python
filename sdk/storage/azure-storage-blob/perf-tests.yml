@@ -13,16 +13,36 @@ PackageVersions:
 Tests:
 - Test: download
   Class: DownloadTest
-  Arguments: &sizes
+  Arguments:
   - --size 10240 --parallel 64
   - --size 10240 --parallel 64 --use-entra-id
   - --size 10485760 --parallel 32
   - --size 1073741824 --parallel 1 --warmup 60 --duration 60
   - --size 1073741824 --parallel 8 --warmup 60 --duration 60
+  - --size 1073741824 --parallel 16 --warmup 60 --duration 60
+  - --size 1073741824 --parallel 8 --connection-block-size 8192 --warmup 60 --duration 60
+  - --size 1073741824 --parallel 16 --connection-block-size 8192 --warmup 60 --duration 60
+  - --size 1073741824 --parallel 8 --connection-block-size 32768 --warmup 60 --duration 60
+  - --size 1073741824 --parallel 16 --connection-block-size 32768 --warmup 60 --duration 60
+  - --size 1073741824 --parallel 8 --connection-block-size 65536 --warmup 60 --duration 60
+  - --size 1073741824 --parallel 16 --connection-block-size 65536 --warmup 60 --duration 60
+  - --size 1073741824 --parallel 32 --connection-block-size 65536 --warmup 60 --duration 60
+  - --size 1073741824 --parallel 8 --connection-block-size 65536 --max_block_size 8388608 --warmup 60 --duration 60
+  - --size 1073741824 --parallel 8 --connection-block-size 65536 --max_block_size 16777216 --warmup 60 --duration 60
+  - --size 1073741824 --parallel 8 --connection-block-size 65536 --max_block_size 67108864 --warmup 60 --duration 60
 
 - Test: upload
   Class: UploadTest
-  Arguments: *sizes
+  Arguments:
+  - --size 1073741824 --parallel 1 --warmup 60 --duration 60
+  - --size 1073741824 --parallel 8 --warmup 60 --duration 60
+  - --size 1073741824 --parallel 16 --warmup 60 --duration 60
+  - --size 1073741824 --parallel 1 --max_block_size 16777216 --warmup 60 --duration 60
+  - --size 1073741824 --parallel 8 --max_block_size 16777216 --warmup 60 --duration 60
+  - --size 1073741824 --parallel 16 --max_block_size 16777216 --warmup 60 --duration 60
+  - --size 1073741824 --parallel 1 --max_block_size 16777216 --buffer-threshold 16777217 --warmup 60 --duration 60
+  - --size 1073741824 --parallel 8 --max_block_size 16777216 --buffer-threshold 16777217 --warmup 60 --duration 60
+  - --size 1073741824 --parallel 16 --max_block_size 16777216 --buffer-threshold 16777217 --warmup 60 --duration 60
 
 - Test: list-blobs
   Class: ListBlobsTest
